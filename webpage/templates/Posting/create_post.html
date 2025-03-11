@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글 작성</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>새 글 작성</h1>
+        
+        <form action="{% url 'blogpage' %}" method="post">
+            {% csrf_token %}
+            
+            <!-- 제목 입력란 -->
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <!-- 본문 입력란 -->
+            <div class="form-group">
+                <label for="body">본문</label>
+                <textarea id="body" name="body" rows="10" required></textarea>
+            </div>
+
+            <!-- 등록 버튼 -->
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">등록</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

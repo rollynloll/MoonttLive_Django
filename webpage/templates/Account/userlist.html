@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USERLIST</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>USERLIST</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>작업</th>
+                    <th>이름</th>
+                    <th>아이디</th>
+                    <th>비밀번호</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for list in user_list %}
+                    <tr>
+                        <td>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="submit" value="삭제" class="btn-delete">
+                        </td>
+                        <td>
+                            <input type="text" name="drop_name" value="{{ list.name }}" readonly />
+                        </td>
+                        <td>
+                            <input type="text" name="drop_id" value="{{ list.id }}" readonly />
+                        </td>
+                        <td>
+                            <input type="text" name="drop_pw" value="{{ list.pw }}" readonly />
+                                </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

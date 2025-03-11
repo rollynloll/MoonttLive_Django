@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>게시판</h1>
+            <input type="text" id="user" name="user" value = "ACCOUNT" disabled>
+            <a href="{% url 'postpage' %}" class="btn-create">글 작성</a>
+        </header>
+        
+        <table class="board-table">
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>글쓴이</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in postlist %}
+                <tr>
+                    <td><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></td>
+                    <td>{{ post.author }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="2">게시글이 없습니다.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
